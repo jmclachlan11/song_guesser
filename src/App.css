@@ -1,38 +1,198 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 35px;
+  position: relative; 
 }
 
-.App-link {
-  color: #61dafb;
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; 
+  background: url('./star.jpg');
+  animation: twinkling 1.5s infinite linear;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes twinkling {
+  0% {
+    opacity: 0.5;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
+
+
+
+
+.App {
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.img {
+  filter: blur(40px);
+  -webkit-filter: blur(40px);
+}
+
+a {
+  text-decoration: none;
+  color: #007bff; 
+  margin-bottom: 20px;
+  font-size: 18px; 
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 36px; 
+  margin-bottom: 30px; 
+}
+
+h2 {
+  font-size: 24px; 
+  margin-bottom: 20px; 
+}
+
+.search-box {
+  margin-bottom: 30px; 
+}
+
+.input-default {
+  width: calc(100% - 20px);
+  padding: 15px; 
+  font-size: 35px; 
+  border: 4px solid #fff; 
+  border-radius: 8px; 
+  background-color: transparent;
+  color: #fff; 
+  margin-bottom: 20px; 
+}
+
+button {
+  background-color: transparent; 
+  color: #fff; 
+  border: 1px solid #fff; 
+  padding: 15px 30px; 
+  font-size: 20px; 
+  cursor: pointer;
+  margin: 20px 10px; 
+  border-radius: 8px; 
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #fff; 
+  color: #000; 
+}
+
+.Accuracy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AccuracyText {
+  font-size: 20px; 
+}
+
+.AccuracyNumber {
+  font-size: 45px; 
+}
+
+.green {
+  width: calc(100% - 20px);
+  padding: 15px; 
+  font-size: 35px; 
+  border: 4px solid #00d804; 
+  border-radius: 8px; 
+  background-color: transparent;
+  color: #ffffff; 
+  margin-bottom: 20px; 
+}
+
+.shake {
+  width: calc(100% - 20px);
+  padding: 15px; 
+  font-size: 35px; 
+  border: 4px solid #ff0000; 
+  border-radius: 8px; 
+  background-color: transparent;
+  color: #fff; 
+  margin-bottom: 20px; 
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  75% { transform: translateX(-10px); }
+  100% { transform: translateX(0); }
+}
+
+/* Red textbox */
+.incorrect {
+  border-color: red;
+  color: red;
+}
+
+/* Green textbox */
+.correct {
+  border-color: green;
+  color: green;
+}
+
+.Timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TimerNumber {
+  font-size: 36px; 
+}
+
+.TimerLabel {
+  font-size: 18px; 
+}
+
+.blur-image {
+  filter: blur(10px); 
+    transition: filter 5s; 
+
+}
+
+.blur-image:hover {
+  filter: blur(0); 
+}
+
+
