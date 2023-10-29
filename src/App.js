@@ -55,6 +55,7 @@ export const App = () => {
 			if (timer > 0) {
 				setTimer(timer - 1);
 			} else {
+				setTotal(total + 1);
 				skip();
 			}
 		}, 1000);
@@ -130,7 +131,12 @@ export const App = () => {
 
 	const Accuracy = ({ score, total }) => {
 		const accuracy = total === 0 ? 0 : ((score / total) * 100).toFixed(0);
-		const accuracyColor = accuracy >= 30 && accuracy <= 70 ? 'white' : accuracy < 30 ? 'red' : 'green';
+		const accuracyColor =
+			accuracy >= 30 && accuracy <= 70
+				? "white"
+				: accuracy < 30
+				? "red"
+				: "green";
 		console.log(total);
 		console.log(score);
 		return (
@@ -157,7 +163,7 @@ export const App = () => {
 			)}
 			{loggedIn && (
 				<>
-					{total > 0 && <Accuracy score={score} total={total} /> }
+					{total > 0 && <Accuracy score={score} total={total} />}
 					<div>
 						<img
 							src={nowPlaying.albumArt}
