@@ -2,44 +2,20 @@ import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import { Component } from "react";
-// import { api } from "./App";
 
 export class SoundPlayer extends Component {
 	render() {
-		// const [nowPlaying, setNowPlaying] = useState({});
-
-		// const api = this.props;
-
-		// const getNowPlaying = (api) => {
-		// 	api.getMyCurrentPlaybackState().then((response) => {
-		// 		setNowPlaying({
-		// 			name: response.item.name,
-		// 			albumArt: response.item.album.images[0].url,
-		// 		});
-		// 	});
-		// };
-
-		// const skip = () => {
-		// 	api.skipToNext().then(() => {
-		// 		getNowPlaying();
-		// 	});
-		// };
-
-		// useEffect(() => {
-		// 	getNowPlaying(api);
-		// }, []);
+		
 
 		return (
 			<>
 				<Header />
-				{/* <p>{api}</p> */}
 				<TextInput />
 			</>
 		);
 	}
 }
 
-let songSet = new Set();
 
 function playNextSong(player, set) {
 	const randomNum = Math.floor(Math.random() * 100) + 1;

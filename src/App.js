@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import { Routes, Route, Link } from "react-router-dom";
 import { SoundPlayer } from "./SoundPlayer";
 
 const api = new SpotifyWebApi();
@@ -18,10 +17,12 @@ const getTokenFromURL = () => {
 		}, {});
 };
 
-function App() {
+export const App = () => {
 	const [token, setToken] = useState("");
 	const [nowPlaying, setNowPlaying] = useState({});
 	const [loggedIn, setLoggedIn] = useState(false);
+
+	let songSet = new Set();
 
 	useEffect(() => {
 		const token = getTokenFromURL().access_token;
@@ -43,19 +44,60 @@ function App() {
 		});
 	};
 
+	function checkAnswer(answer) {
+		if (nowPlaying.name.toLowerCase() === answer.toLowerCase()) {
+			console.log("match");
+			// currentSong = playNextSong(player, songSet);
+		}
+	}
+
+	const handleKeyPress = (e) => {
+		let keycode = e.keyCode ? e.keyCode : e.which;
+		console.log(keycode);
+		if (keycode === 13) {
+			checkAnswer(document.getElementById("input").value);
+			document.getElementById("input").value = "";
+		}
+	};
+
+	function playNextSong(player, set) {
+		const randomNum = Math.floor(Math.random() * 100) + 1;
+		set.Add(player.getCurrentState().track_window.current_track);
+		for (
+			let i = 0;
+			i < randomNum ||
+			set.has(player.getCurrentState().track_window.current_track);
+			i++
+		) {
+			player.NextTrack();
+		}
+		return player.getCurrentState().track_window.current_track;
+	}
+
 	const skip = () => {
 		api.skipToNext().then(() => {
 			getNowPlaying();
 		});
 	};
 
+	const TextInput = () => {
+		return (
+			<>
+				<h2>Lorem ipsum dolor sit amet</h2>
+				<div className="search-box">
+					<input
+						type="text"
+						onKeyDown={handleKeyPress}
+						id="input"
+						placeholder=""
+					></input>
+				</div>
+			</>
+		);
+	};
+
 	return (
 		<div className="App">
-      <Routes>
-        {/* <Route path="*" element={<App />} /> */}
-        <Route path="sound-player" element={<SoundPlayer />} />
-      </Routes>
-
 			{!loggedIn && <a href="http://localhost:8888">Log in</a>}
 			{loggedIn && (
 				<>
@@ -68,11 +110,17 @@ function App() {
 					</div>
 					<button onClick={getNowPlaying}>Check now playing</button>
 					<button onClick={skip}>Skip</button>
-          <Link to="sound-player">sound player</Link>
+
+					<Header />
+					<TextInput />
 				</>
 			)}
 		</div>
 	);
-}
+};
 
-export default App ;
+const Header = () => {
+	return <h1>Guess the song!</h1>;
+};
+
+export default App;
